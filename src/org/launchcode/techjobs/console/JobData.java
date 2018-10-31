@@ -1,5 +1,6 @@
 package org.launchcode.techjobs.console;
 
+import com.sun.xml.internal.ws.util.StringUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -7,10 +8,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -20,23 +18,22 @@ public class JobData {
     private static final String DATA_FILE = "resources/job_data.csv";
     private static Boolean isDataLoaded = false;
 
-    private static ArrayList<HashMap<String, String>> allJobs;
+    public static ArrayList<HashMap<String, String>> allJobs;
 
-    /*public static ArrayList<HashMap<String, String>> findByValue(String column, String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String column, String value) {
         // load data, if not already loaded
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-
         for (HashMap<String, String> row : allJobs) {
             String aValue = row.get(column);
-            if (aValue.contains(value)){
+            System.out.println(aValue);
+            /*if (aValue.toLowerCase().contains(value.toLowerCase())){
                 jobs.add(row);
-            }
+            }*/
         }
         return jobs;
     }
-*/
 
     /**
      * Fetch list of all values from loaded data,
@@ -88,15 +85,13 @@ public class JobData {
      */
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
 
+
         // load data, if not already loaded
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-
         for (HashMap<String, String> row : allJobs) {
-
             String aValue = row.get(column);
-
             if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }

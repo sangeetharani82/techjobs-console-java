@@ -30,9 +30,6 @@ public class JobData {
                 if (aValue.toLowerCase().contains(value.toLowerCase())) {
                     jobs.add(row);
                 }
-                /*else {
-                    System.out.println("No Results");
-                }*/
             }
         }
         return jobs;

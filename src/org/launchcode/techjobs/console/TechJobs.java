@@ -116,6 +116,9 @@ public class TechJobs {
             }
             System.out.println("*****" + "\n");
         }
+        if (someJobs.size() == 0) {
+            System.out.println("No Results");
+        }
     }
 
 }

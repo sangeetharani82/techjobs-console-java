@@ -1,7 +1,6 @@
 package org.launchcode.techjobs.console;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by LaunchCode
@@ -19,6 +18,8 @@ public class TechJobs {
         columnChoices.put("location", "Location");
         columnChoices.put("position type", "Position Type");
         columnChoices.put("all", "All");
+        //columnChoices.put("name", "Name");
+
 
         // Top-level menu options
         HashMap<String, String> actionChoices = new HashMap<>();
@@ -59,9 +60,7 @@ public class TechJobs {
                 System.out.println("\nSearch term: ");
                 String searchTerm = (in.nextLine());
                 if (searchField.equals("all")) {
-                    for (String c : columnChoices.keySet()) {
-                        printJobs(JobData.findByValue(c, searchTerm));
-                    }
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -118,7 +117,5 @@ public class TechJobs {
             System.out.println("*****" + "\n");
         }
     }
+
 }
-
-
-

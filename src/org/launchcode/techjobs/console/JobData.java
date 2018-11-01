@@ -1,6 +1,5 @@
 package org.launchcode.techjobs.console;
 
-import com.sun.xml.internal.ws.util.StringUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -20,17 +19,21 @@ public class JobData {
 
     public static ArrayList<HashMap<String, String>> allJobs;
 
-    public static ArrayList<HashMap<String, String>> findByValue(String column, String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
         // load data, if not already loaded
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
         for (HashMap<String, String> row : allJobs) {
-            String aValue = row.get(column);
-            System.out.println(aValue);
-            /*if (aValue.toLowerCase().contains(value.toLowerCase())){
-                jobs.add(row);
-            }*/
+            for (String key : row.keySet()) {
+                String aValue = row.get(key);
+                if (aValue.toLowerCase().contains(value.toLowerCase())) {
+                    jobs.add(row);
+                }
+                /*else {
+                    System.out.println("No Results");
+                }*/
+            }
         }
         return jobs;
     }
@@ -58,7 +61,8 @@ public class JobData {
                 values.add(aValue);
             }
         }
-        values.sort(String.CASE_INSENSITIVE_ORDER);//sorted output
+        //values.sort(String.CASE_INSENSITIVE_ORDER);//sorted output
+        Collections.sort(values);
 
         return values;
 
